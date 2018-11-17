@@ -1,0 +1,10 @@
+﻿  debug.cpp
+  Game.cpp
+  GameObject.cpp
+  main.cpp
+  Mario.cpp
+  Sprites.cpp
+  Textures.cpp
+  Generating Code...
+Game.obj : error LNK2001: unresolved external symbol "private: static unsigned char * CGame::keyStates" (?keyStates@CGame@@0PAEA)
+D:\New folder (2)\Game\gamedev-intro-tutorials - Copy\Debug\03-Keyboard-States.exe : fatal error LNK1120: 1 unresolved externals
