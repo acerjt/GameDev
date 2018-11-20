@@ -2,15 +2,12 @@
 #include "GameObject.h"
 
 
-#define BAT_ST_BBOX_WIDTH  32
-#define BAT_ST_BBOX_HEIGHT 32
-
-
 class Batstartgame : public CGameObject
 {
 	
-	//int untouchable;
-	//DWORD untouchable_start;
+	CAnimation * getframe;
+public:
+	int ani;
 public:
 
 	virtual void Update(DWORD dt);
@@ -21,5 +18,6 @@ public:
 	//virtual void Render(Camera *camera);
 	Batstartgame();
 	~Batstartgame();
+	int GetCurrentFrameOfBatstartgame();
 };
 

@@ -14,7 +14,6 @@ public:
 	virtual void Render();
 	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
 	virtual void SetState(int state);
-	//virtual void Render(Camera *camera);
 	BatIntro();
 	~BatIntro();
 };

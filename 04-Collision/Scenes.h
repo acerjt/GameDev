@@ -2,12 +2,6 @@
 #include "GameObject.h"
 
 
-#define SCENE_STATE_START 0
-#define SCENE_STATE_INTRO 1
-#define SCENE_STATE_OUT_CASTLE 2
-#define SCENE_STATE_1	  3
-#define SCENE_STATE_2     4
-
 #define SCENE_LIVE_TIME 7000
 
 #define SCENE_BBOX_WIDTH  0

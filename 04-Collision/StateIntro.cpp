@@ -53,8 +53,8 @@ void StateIntro::Update(DWORD dt)
 	{
 		simon->SetPosition(simon->x, simon->y);
 		simon->SetState(SIMON_STATE_IDLE_2);
-		this->timeDelay += dt;
-		if (this->timeDelay >= STATE_INTRO_LIVE_TIME)
+		timeDelay += dt;
+		if (timeDelay >= STATE_INTRO_LIVE_TIME)
 		{
 			SetChangingState(true);
 			simon->SetState(SIMON_STATE_IDLE);
@@ -93,7 +93,9 @@ void StateIntro::DestroyAll()
 	coObjects.clear();
 	delete(helicopter);
 	delete(scene);
-	for(int i = 0; i < 2;i++)
-		delete(batintro[i]);
+	//for(int i = 0; i < 2;i++)
+	//	delete(batintro[i]);
+	//delete(batintro);
+	delete(brick);
 
 }

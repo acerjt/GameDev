@@ -3,9 +3,8 @@
 #include "MorningStar.h"
 
 
-#define SIMON_WALKING_SPEED		0.1f 
-//0.1f
-#define SIMON_JUMP_SPEED_Y		0.5f
+#define SIMON_WALKING_SPEED		0.11f 
+#define SIMON_JUMP_SPEED_Y		0.6f
 #define SIMON_JUMP_DEFLECT_SPEED 0.2f
 #define SIMON_GRAVITY			0.002f
 #define SIMON_DIE_DEFLECT_SPEED	 0.5f
@@ -39,10 +38,6 @@
 
 #define	SIMON_ALIVE		1
 
-
-
-//#define SIMON_SMALL_BBOX_WIDTH  13
-//#define SIMON_SMALL_BBOX_HEIGHT 15
 
 #define SIMON_UNTOUCHABLE_TIME 5000
 #define SIMON_ATTACK_TIME 400

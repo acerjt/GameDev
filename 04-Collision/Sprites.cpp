@@ -12,6 +12,8 @@ CSprite::CSprite(int id, int left, int top, int right, int bottom, LPDIRECT3DTEX
 	this->texture = tex;
 }
 
+
+
 CSprites * CSprites::__instance = NULL;
 
 CSprites *CSprites::GetInstance()
@@ -115,54 +117,14 @@ void CAnimation::Render(Camera *camera,float x, float y, int alpha)
 	frames[currentFrame]->GetSprite()->Draw(camera,x, y, alpha);
 }
 
+//LPANIMATION_FRAME CAnimation::Get(int id)
+//{
+//	return frames[id];
+//}
 
 
 
-void CAnimation::Render1(Camera *camera,float x, float y, int alpha)
-{
-	DWORD now = GetTickCount();
-	if (currentFrame == -1)
-	{
-		currentFrame = 0;
-		lastFrameTime = now;
-	}
-	else
-	{
-		DWORD t = frames[currentFrame]->GetTime();
-		if (now - lastFrameTime > t)
-		{
-			currentFrame++;
-			lastFrameTime = now;
-			if (currentFrame == frames.size()) currentFrame = 12;
-		}
 
-	}
-
-	frames[currentFrame]->GetSprite()->Draw(camera,x, y, alpha);
-}
-
-void CAnimation::Render1(float x, float y, int alpha)
-{
-	DWORD now = GetTickCount();
-	if (currentFrame == -1)
-	{
-		currentFrame = 0;
-		lastFrameTime = now;
-	}
-	else
-	{
-		DWORD t = frames[currentFrame]->GetTime();
-		if (now - lastFrameTime > t)
-		{
-			currentFrame++;
-			lastFrameTime = now;
-			if (currentFrame == frames.size()) currentFrame = 12;
-		}
-
-	}
-
-	frames[currentFrame]->GetSprite()->Draw(x, y, alpha);
-}
 
 
 

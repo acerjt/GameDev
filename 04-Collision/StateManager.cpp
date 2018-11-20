@@ -12,11 +12,8 @@ StateManager::StateManager()
 StateManager::~StateManager()
 {
 }
-Simon* StateManager::simon = NULL;
 void StateManager::LoadState(int stateID,Simon *simon)
 {
-
-
 	switch (stateID)
 	{
 	case STATE_START_GAME:
@@ -33,27 +30,10 @@ void StateManager::LoadState(int stateID,Simon *simon)
 	case STATE_OUT_CASTLE:
 		delete(gameState);
 		gameState = new StateOutCastle();
-		gameState->simon = simon;
-		Item::TakeSimonPointer(simon);
 		gameState->state = stateID;
 		this->stateID = stateID;
 		break;
-	//case GAME_PLAY_STATE_TWO:
-	//	delete(gameState);
-	//	gameState = new GamePlayStateTwo();
-	//	if (!gameState->Initialize(gDevice))
-	//		return;
-	//	gameState->state = stateID;
-	//	this->stateID = stateID;
-	//	break;
-	//case GAME_PLAY_STATE_THREE:
-	//	delete(gameState);
-	//	gameState = new GamePlayStateThree();
-	//	if (!gameState->Initialize(gDevice))
-	//		return;
-	//	gameState->state = stateID;
-	//	this->stateID = stateID;
-	//	break;
+	
 	default:
 		break;
 	}
@@ -66,16 +46,11 @@ void StateManager::NextStateLevel()
 
 void StateManager::Render(Camera *camera)
 {
-	
-
 	gameState->Render(camera);
-
-
 }
 
 void StateManager::Update(DWORD dt)
 {
-
 	gameState->Update(dt);
 	if (gameState->GetChangingState())
 	{
@@ -87,7 +62,5 @@ void StateManager::Update(DWORD dt)
 		LoadState(stateID,gameState->simon);
 		gameState->SetChangingState(false);
 	}
-
-	
 }
 

@@ -75,16 +75,11 @@ MorningStar::MorningStar()
 	this->AddAnimation(7006);
 
 }
-//
-//void MorningStar::Render(Camera *camera)
-//{
-//
-//}
 
 
 void MorningStar::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
-	//Calculate dx, dy 
+	
  	CGameObject::Update(dt);
 
 	for (UINT i = 0; i < coObjects->size(); i++)
@@ -160,26 +155,16 @@ void MorningStar::SetPosition(float x,float y,bool Issit)
 
 void MorningStar::Render(Camera *camera)
 {
-
-	ani = animations[0];
-	animations[0]->Render(camera, x, y);
-		RenderBoundingBox(camera);
-
+	
 }
 
 void MorningStar::Render(Camera *camera,int ani)
 {
 	anirender = ani;
-
 	animations[ani]->Render(camera, x, y);
-
 }
 void MorningStar::Render()
 {
-	ani = animations[0];
-	animations[0]->Render(x, y);
-	//RenderBoundingBox();
-
 }
 
 

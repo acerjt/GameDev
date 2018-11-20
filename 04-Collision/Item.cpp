@@ -12,19 +12,10 @@ Item::Item()
 {
 	std::srand(time(0));
 	Random();
+
 	CTextures * textures = CTextures::GetInstance();
 	CSprites * sprites = CSprites::GetInstance();
-	CAnimations * animations = CAnimations::GetInstance();
-	LPANIMATION ani;
-
-
 	switch (itemType) {
-	case ITEM_BALL:
-		textures->Add(ID_TEX_ITEM_BALL, L"textures\\13.png", D3DCOLOR_XRGB(255, 0, 255));
-		sprites->Add(ITEM_BALL, 0, 0, 27, 31, textures->Get(ID_TEX_ITEM_BALL));
-		this->width = 28;
-		this->height = 32;
-		break;
 	case ITEM_UPGRADE_1:
 		textures->Add(ID_TEX_ITEM_UPGRADE_1, L"textures\\DOUBLE_SHOT.png", D3DCOLOR_XRGB(255, 255, 255));
 		sprites->Add(ITEM_UPGRADE_1, 0, 0, 27, 27, textures->Get(ID_TEX_ITEM_UPGRADE_1));
@@ -43,9 +34,21 @@ Item::Item()
 		this->width = 31;
 		this->height = 32;
 		break;
-	case ITEM_MONEY:
-		textures->Add(ID_TEX_ITEM_MONEY, L"textures\\Money_bag_white.png", D3DCOLOR_XRGB(255, 0, 255));
-		sprites->Add(ITEM_MONEY, 0, 0, 29, 29, textures->Get(ID_TEX_ITEM_MONEY));
+	case ITEM_MONEY_RED:
+		textures->Add(ID_TEX_ITEM_MONEY, L"textures\\money.png", D3DCOLOR_XRGB(255, 0, 255));
+		sprites->Add(ITEM_MONEY_RED,0 , 0, 29, 29, textures->Get(ID_TEX_ITEM_MONEY));
+		this->width = 29;
+		this->height = 30;
+		break;
+	case ITEM_MONEY_WHITE:
+		textures->Add(ID_TEX_ITEM_MONEY, L"textures\\money.png", D3DCOLOR_XRGB(255, 0, 255));
+		sprites->Add(ITEM_MONEY_WHITE, 30, 0, 59, 29, textures->Get(ID_TEX_ITEM_MONEY));
+		this->width = 29;
+		this->height = 30;
+		break;
+	case ITEM_MONEY_PURPLE:
+		textures->Add(ID_TEX_ITEM_MONEY, L"textures\\money.png", D3DCOLOR_XRGB(255, 0, 255));
+		sprites->Add(ITEM_MONEY_PURPLE, 60, 0, 89, 29, textures->Get(ID_TEX_ITEM_MONEY));
 		this->width = 29;
 		this->height = 30;
 		break;
@@ -55,15 +58,15 @@ Item::Item()
 		this->width = 33;
 		this->height = 40;
 		break;
-	case ITEM_TIME_STOP:
-		textures->Add(ID_TEX_ITEM_TIME_STOP, L"textures\\STOP_WATCH.png", D3DCOLOR_XRGB(255, 255, 255));
-		sprites->Add(ITEM_TIME_STOP, 0, 0, 29, 31, textures->Get(ID_TEX_ITEM_TIME_STOP));
+	case ITEM_STOP_WATCH:
+		textures->Add(ID_TEX_ITEM_STOP_WATCH, L"textures\\STOP_WATCH.png", D3DCOLOR_XRGB(255, 0, 255));
+		sprites->Add(ITEM_STOP_WATCH, 0, 0, 29, 31, textures->Get(ID_TEX_ITEM_STOP_WATCH));
 		this->width = 29;
 		this->height = 32;
 		break;
 	case ITEM_MORNINGSTAR:
-		textures->Add(ID_TEX_ITEM_WHIP, L"textures\\MORNING_STAR.png", D3DCOLOR_XRGB(255, 255, 255));
-		sprites->Add(ITEM_MORNINGSTAR, 0, 0, 31, 31, textures->Get(ID_TEX_ITEM_WHIP));
+		textures->Add(ID_TEX_ITEM_MORNING_STAR, L"textures\\MORNING_STAR.png", D3DCOLOR_XRGB(255, 0, 255));
+		sprites->Add(ITEM_MORNINGSTAR, 0, 0, 31, 31, textures->Get(ID_TEX_ITEM_MORNING_STAR));
 		this->width = 31;
 		this->height = 32;
 		break;
@@ -109,16 +112,49 @@ Item::Item()
 		this->width = 31;
 		this->height = 32;
 		break;
-
-
-
-		//	break;
-		//	//default:
-		//	//	//MessageBox(NULL, "There no type like that", "Error!", MB_OK);
-		//	//	break;
+	
 	}
 	this->itemType = itemType;
 
+}
+
+Item::Item(int itemType)
+{
+	CTextures * textures = CTextures::GetInstance();
+	CSprites * sprites = CSprites::GetInstance();
+	CAnimations * animations = CAnimations::GetInstance();
+	LPANIMATION ani;
+	
+	switch (itemType)
+	{
+	case ITEM_BALL:
+		textures->Add(ID_TEX_ITEM_BALL, L"textures\\BALL.png", D3DCOLOR_XRGB(255, 0, 255));
+		sprites->Add(9001, 0, 0, 27, 31, textures->Get(ID_TEX_ITEM_BALL));
+		sprites->Add(9002, 28, 0, 55, 31, textures->Get(ID_TEX_ITEM_BALL));
+		ani = new CAnimation(100);
+		ani->Add(9001);
+		ani->Add(9002);
+		animations->Add(9001, ani);
+		this->AddAnimation(9001);
+		this->width = 28;
+		this->height = 32;
+		break;
+	case ITEM_MONEY:
+		textures->Add(ID_TEX_ITEM_MONEY, L"textures\\money.png", D3DCOLOR_XRGB(255, 0, 255));
+		sprites->Add(ITEM_MONEY_RED, 0, 0, 29, 29, textures->Get(ID_TEX_ITEM_MONEY));
+		sprites->Add(ITEM_MONEY_WHITE, 30, 0, 59, 29, textures->Get(ID_TEX_ITEM_MONEY));
+		sprites->Add(ITEM_MONEY_PURPLE, 60, 0, 89, 29, textures->Get(ID_TEX_ITEM_MONEY));
+		ani = new CAnimation(40);
+		ani->Add(ITEM_MONEY_RED);
+		ani->Add(ITEM_MONEY_WHITE);
+		ani->Add(ITEM_MONEY_PURPLE);
+		animations->Add(9002, ani);
+		this->AddAnimation(9002);
+		this->width = 28;
+		this->height = 32;
+		break;
+	}
+	this->itemType = itemType;
 }
 
 
@@ -166,7 +202,15 @@ void Item::RandomItem()
 	}
 	else if (percent < 80)
 	{
-		itemType = ITEM_MONEY;
+		itemType = ITEM_MONEY_RED;
+	}
+	else if (percent < 85)
+	{
+		itemType = ITEM_MONEY_PURPLE;
+	}
+	else if (percent < 90)
+	{
+		itemType = ITEM_MONEY_WHITE;
 	}
 	else if (percent < 95)
 	{
@@ -209,22 +253,27 @@ void Item::RandomSubWeapon()
 	}
 	else
 	{
-		itemType = ITEM_TIME_STOP;
+		itemType = ITEM_STOP_WATCH;
 	}
 }
 
 void Item::Render()
 {
-	animations[0]->Render(x, y);
+	
 }
 
 void Item::Render(Camera *camera)
 {
 	if (this->isEnable == true) {
-		CSprites * sprites = CSprites::GetInstance();
-		sprite = sprites->Get(itemType);
-		sprite->Draw(camera, x, y);
-
+		if (itemType == ITEM_BALL)
+			animations[0]->Render(camera, x, y);
+		else if (itemType == ITEM_MONEY)
+				animations[0]->Render(camera, x, y);
+		else {
+			CSprites * sprites = CSprites::GetInstance();
+			sprite = sprites->Get(itemType);
+			sprite->Draw(camera, x, y);
+		}
 	}
 }
 
@@ -239,7 +288,8 @@ void Item::GetBoundingBox(float &left, float &top, float &right, float &bottom)
 void Item::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 {
 	CGameObject::Update(dt, coObjects);
-	vy += SIMON_GRAVITY * dt;
+	if(itemType!=ITEM_MONEY)
+		vy += SIMON_GRAVITY * dt;
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
@@ -251,9 +301,15 @@ void Item::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 
 	//reset untouchable timer if untouchable time has passed
 
+	if (this->GetState()==ITEM_STATE_UP)
+	{
+		vy += -0.00100f;
+		if (vy <= -0.118f)
+			this->SetState(ITEM_STATE_IDLE);
+		
+	}
 
 
-	// No collision occured, proceed normally
 	if (coEvents.size() == 0)
 	{
 		x += dx;
@@ -301,7 +357,20 @@ void Item::UpgradeMorningstar()
 	simon->SetTypeOfMorningstar(simon->GetTypeOfMorningstar() + 1);
 }
 
+void Item::SetState(int state)
+{
+	CGameObject::SetState(state);
 
+	switch (state)
+	{
+	case ITEM_STATE_UP:
+		vy = -0.1f;
+		break;
+	case ITEM_STATE_IDLE:
+		vy = 0;
+		break;
+	}
+}
 Item::~Item()
 {
 }

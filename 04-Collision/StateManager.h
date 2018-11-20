@@ -5,15 +5,12 @@
 class StateManager
 {
 private:
-	
 	GameState* gameState;
 public:
 	int stateID;
-	static Simon *simon;
 public:
 	StateManager();
 	~StateManager();
-	//bool Initialize(HWND hwnd);
 	void LoadState(int stateID,Simon *simon);
 	void NextStateLevel();
 	void Render(Camera *camera);

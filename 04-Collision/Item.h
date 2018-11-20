@@ -4,40 +4,44 @@
 #include <time.h>
 
 
-#define ITEM_SMALL_HEART	9001
-#define ITEM_BIG_HEART		9002
-#define ITEM_ROAST			9003
-#define ITEM_MORNINGSTAR	9004
-#define ITEM_AXE			9005
-#define ITEM_CROSS			9006
-#define ITEM_HOLY_WATER		9007
-#define ITEM_KNIFE			9008
-#define ITEM_TIME_STOP		9009
-#define ITEM_INVISIBLE		9010
-#define ITEM_MONEY			9011
-#define ITEM_BALL			9012
+#define ITEM_BALL			9001
+#define ITEM_MONEY			9002
+#define ITEM_SMALL_HEART	9003	
+#define ITEM_BIG_HEART		9004
+#define ITEM_ROAST			9005
+#define ITEM_MORNINGSTAR	9006
+#define ITEM_AXE			9007
+#define ITEM_CROSS			9008
+#define ITEM_HOLY_WATER		9009
+#define ITEM_KNIFE			9010
+#define ITEM_STOP_WATCH		9011
+#define ITEM_INVISIBLE		9012
 #define ITEM_UPGRADE_1		9013
 #define ITEM_UPGRADE_2		9014
 #define ITEM_ROSARY			9015
-
+#define ITEM_MONEY_WHITE	9016
+#define ITEM_MONEY_RED		9017
+#define ITEM_MONEY_PURPLE	9018
+							
 
 #define ID_TEX_ITEM_BALL			1
-#define ID_TEX_ITEM_SMALL_HEART		2
-#define ID_TEX_ITEM_BIG_HEART		3
-#define ID_TEX_ITEM_ROAST			4
-#define ID_TEX_ITEM_WHIP			5
-#define ID_TEX_ITEM_AXE				6
-#define ID_TEX_ITEM_CROSS			7
-#define ID_TEX_ITEM_HOLY_WATER		8
-#define ID_TEX_ITEM_KNIFE			9
-#define ID_TEX_ITEM_TIME_STOP		10
-#define ID_TEX_ITEM_INVISIBLE		11
-#define ID_TEX_ITEM_MONEY			12
+#define ID_TEX_ITEM_MONEY			2
+#define ID_TEX_ITEM_SMALL_HEART		3
+#define ID_TEX_ITEM_BIG_HEART		4
+#define ID_TEX_ITEM_ROAST			5
+#define ID_TEX_ITEM_MORNING_STAR	6
+#define ID_TEX_ITEM_AXE				7
+#define ID_TEX_ITEM_CROSS			8
+#define ID_TEX_ITEM_HOLY_WATER		9
+#define ID_TEX_ITEM_KNIFE			10
+#define ID_TEX_ITEM_STOP_WATCH		11
+#define ID_TEX_ITEM_INVISIBLE		12
 #define ID_TEX_ITEM_UPGRADE_1		13
 #define ID_TEX_ITEM_UPGRADE_2		14
 #define ID_TEX_ITEM_ROSARY			15
-
-
+									
+#define ITEM_STATE_UP				9000
+#define ITEM_STATE_IDLE				9001
 
 class Item;
 typedef Item * LPITEM;
@@ -61,7 +65,8 @@ public:
 	static bool isKillAll;
 public:
 	Item();
-	
+	Item(int itemType);
+	void SetState(int state);
 	~Item();
 	static void TakeSimonPointer(Simon *simon);
 	void Render(Camera *camera);

@@ -4,22 +4,17 @@
 #include "Simon.h"
 #include "Brick.h"
 #include "Torch.h"
-#include "Zombie.h"
-//#include "UI.h"
-#include "Item.h"
-//#include "WaterAnimation.h"
+#include "MapCollision.h"
+#include "TransparentObject.h"
 class StateOutCastle : public GameState
 {
 private:
-	//Simon *simon;
 	TileMap *tilemap;
 	Torch *torch[6];
-
-
+	TransparentObject *transparentobject;
 	CBrick *brick;
-	CGameObject *cameraObject;
-	CGameObject *leftCamera;
-	CGameObject *rightCamera;
+	MapCollision *leftmap;
+	MapCollision *rightmap;
 
 
 	//UI *ui;

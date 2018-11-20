@@ -44,7 +44,6 @@ void TileMap::LoadListTileFromFile(const char *file)
 {
 	fstream pFile;
 	pFile.open(file, fstream::in);
-
 	string lineString;
 	int *posSpace = new int[cols];
 	string subString;
@@ -83,14 +82,6 @@ void TileMap::Render(Camera *camera)
 	D3DXVECTOR3 pos;
 
 	D3DXVECTOR3 cameraPosition = camera->GetCameraPosition();
-	//int rowStart = abs(480 - cameraPosition.y) / frameHeight - 2 < 0 ? 0 : abs(480 - cameraPosition.y) / frameHeight - 2;
-	//int rowEnd = (cameraPosition.y / frameHeight) > rows ? rows : (cameraPosition.y / frameHeight);
-	//int start = rows - rowEnd;
-	//int end = rows - rowStart;
-	//int colStart = cameraPosition.x / frameWidth;
-	//int colEnd = (cameraPosition.x / frameWidth + 640 / frameWidth + 1) > cols ? cols : (cameraPosition.x / frameHeight + 640 / frameWidth + 1);
-
-	//Ve tat ca cac tile nam trong camera
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
@@ -100,7 +91,7 @@ void TileMap::Render(Camera *camera)
 			rect.right = rect.left + frameWidth;
 			rect.bottom = rect.top + frameHeight;
 			pos.x = j * frameWidth;
-			pos.y = i * frameHeight+75;
+			pos.y = i * frameHeight;
 			pos.z = 0;
 			pos = camera->SetPositionInViewPort(pos);
 			sprite->Draw(pos, rect);

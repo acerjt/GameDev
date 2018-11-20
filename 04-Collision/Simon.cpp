@@ -6,6 +6,8 @@
 #include "Game.h"
 #include "Zombie.h"
 #include "Torch.h"
+#include "MapCollision.h"
+#include "TransparentObject.h"
 void Simon::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)//, vector<LPGAMEOBJECT> *noncoObjects)
 {
 	
@@ -83,7 +85,7 @@ void Simon::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)//, vector<LPGAMEOB
 			for (UINT i = 0; i < coEventsResult.size(); i++)
 			{
 				LPCOLLISIONEVENT e = coEventsResult[i];
-				if (dynamic_cast<CBrick *>(e->obj))
+				if (dynamic_cast<CBrick *>(e->obj)|| dynamic_cast<MapCollision *>(e->obj))
 				{
 					if (e->ny < 0)
 					{
@@ -96,8 +98,8 @@ void Simon::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)//, vector<LPGAMEOB
 				}
 				else
 				{
-					x += dx + nx * 0.4f;
-					y += dy + ny * 0.4f;
+					x += dx +nx * 0.4f;
+					y += dy +ny * 0.7f;
 				}
 				if (dynamic_cast<Item *>(e->obj))
 				{
@@ -129,8 +131,14 @@ void Simon::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)//, vector<LPGAMEOB
 								case ITEM_BALL:
 									
 									break;
-								case ITEM_MONEY:
+								case ITEM_MONEY_RED:
+
+									break;
+								case ITEM_MONEY_WHITE:
 								
+									break;
+								case ITEM_MONEY_PURPLE:
+
 									break;
 								case ITEM_INVISIBLE:
 									
@@ -144,6 +152,9 @@ void Simon::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)//, vector<LPGAMEOB
 								case ITEM_UPGRADE_2:
 								
 									break;
+								case ITEM_STOP_WATCH:
+
+									break;
 								default:
 									
 									break;
@@ -154,6 +165,23 @@ void Simon::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)//, vector<LPGAMEOB
 							}
 						}
 					
+				}
+				if (dynamic_cast<TransparentObject *>(e->obj))
+				{
+					TransparentObject *transparentobject = dynamic_cast<TransparentObject *>(e->obj);
+
+					float l1, t1, r1, b1, l2, t2, r2, b2;
+					GetBoundingBox(l1, t1, r1, b1);
+					transparentobject->GetBoundingBox(l2, t2, r2, b2);
+
+					if (t1 <= b2 || b1 >= t2 || l1 <= r2 || r1 >= l2) {
+						if (transparentobject->isEnable == true) 
+						{
+							transparentobject->isEnable = false;
+							transparentobject->isDead = true;
+
+						}
+					}
 				}
 				if (dynamic_cast<Zombie *>(e->obj))
 				{
@@ -304,7 +332,6 @@ void Simon::Render(Camera *camera)
 	if (untouchable) alpha = 128;
 		animations[anirender]->Render(camera, x, y, alpha);
 
-	//RenderBoundingBox(camera);
 }
 void Simon::Render()
 {

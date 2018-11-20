@@ -3,19 +3,24 @@
 
 void Batstartgame::Update(DWORD dt)
 {
-
+	if (ani == 0)
+	{
+		getframe = animations[0];
+		if (getframe->getCurrentFrame() == 12)
+			ani = 1;
+	}
 }
 
 
 
 void Batstartgame::Render(Camera *camera)
 {
-	animations[0]->Render1(camera,x, y);
+
+	animations[ani]->Render(camera,x, y);
 }
 
 void Batstartgame::Render()
 {
-	animations[0]->Render1(x, y);
 }
 Batstartgame::Batstartgame():CGameObject()
 {
@@ -58,18 +63,24 @@ Batstartgame::Batstartgame():CGameObject()
 	ani->Add(2011);
 	ani->Add(2012);
 	ani->Add(2013);
-	ani->Add(2014);
-	ani->Add(2015);
 	animations->Add(2001, ani);
 	this->AddAnimation(2001);
+	ani = new CAnimation(65);
+	ani->Add(2013);
+	ani->Add(2014);
+	ani->Add(2015);
+	animations->Add(2002, ani);
+	this->AddAnimation(2002);
 }
 Batstartgame::~Batstartgame()
 {
 }
 
-
-
-
+int Batstartgame::GetCurrentFrameOfBatstartgame()
+{
+	getframe = animations[ani];
+	return getframe->getCurrentFrame();
+}
 
 
 
@@ -77,10 +88,7 @@ Batstartgame::~Batstartgame()
 
 void Batstartgame::GetBoundingBox(float &l, float &t, float &r, float &b)
 {
-	l = x;
-	t = y;
-	r = x + BAT_ST_BBOX_WIDTH;
-	b = y + BAT_ST_BBOX_HEIGHT;
+	l = t = r = b;
 }
 
 

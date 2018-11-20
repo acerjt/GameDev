@@ -7,7 +7,6 @@ using namespace std;
 
 class CSprite
 {
-	
 public: 
 	int id;				// Sprite ID in the sprite database
 
@@ -15,10 +14,9 @@ public:
 	int top;
 	int right;
 	int bottom;
-
+	
 	LPDIRECT3DTEXTURE9 texture;
 	CSprite(int id, int left, int top, int right, int bottom, LPDIRECT3DTEXTURE9 tex);
-
 	void Draw(float x, float y, int alpha = 255);
 	void Draw(Camera *camera, float x, float y, int alpha = 255);
 	void Draw(D3DXVECTOR3 &pos, RECT &rect, int alpha = 255);
@@ -69,10 +67,9 @@ public:
 	CAnimation(int defaultTime) { this->defaultTime = defaultTime; lastFrameTime = -1; currentFrame = -1; }
 	void Add(int spriteId, DWORD time = 0);
 	virtual void Render(float x, float y, int alpha=255);
-	virtual void Render1(Camera *camera,float x, float y, int alpha = 255);
-	virtual void Render1(float x, float y, int alpha = 255);
 	virtual void Render(Camera *camera, float x, float y, int alpha = 255);
 	int getCurrentFrame() { return currentFrame; }
+	//LPANIMATION_FRAME Get(int id);
 	void reset() { currentFrame = -1; lastFrameTime = -1; }
 };
 

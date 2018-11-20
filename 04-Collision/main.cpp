@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
 	INTRODUCTION TO GAME PROGRAMMING SE102
 	
 	SAMPLE 04 - COLLISION
@@ -50,7 +50,7 @@ class CSampleKeyHander: public CKeyEventHandler
 	virtual void OnKeyUp(int KeyCode);
 };
 
-static CSampleKeyHander * keyHandler; 
+CSampleKeyHander * keyHandler; 
 
 void CSampleKeyHander::OnKeyDown(int KeyCode)
 {
@@ -65,12 +65,11 @@ void CSampleKeyHander::OnKeyDown(int KeyCode)
 		}
 		break;
 	case DIK_LCONTROL:
-		//else if (game->IsKeyDown(DIK_LCONTROL))
 			simon->StartFighting();
 		break;
-	case DIK_RETURN: 
+	case DIK_RETURN:  // này là fnuts enter hả uwf
 		if (stateManager->stateID == STATE_START_GAME)
-			GameState::changeState = true;
+			StateStartGame::isPress = true;
 		break;
 	}
 }
@@ -98,14 +97,12 @@ void CSampleKeyHander::KeyState(BYTE *states)
 			simon->SetState(SIMON_STATE_WALKING_RIGHT);
 		else if (game->IsKeyDown(DIK_LEFT))
 			simon->SetState(SIMON_STATE_WALKING_LEFT);
-		/*else if (game->IsKeyDown(DIK_LCONTROL))
+	/*	else if (game->IsKeyDown(DIK_LCONTROL))
 			simon->StartFighting();*/
 		else if (game->IsKeyDown(DIK_DOWN))
 			simon->SetState(SIMON_STATE_SIT);
 		else
 			simon->SetState(SIMON_STATE_IDLE);
-
-	
 }
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -129,19 +126,17 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 */
 void LoadResources()
 {
+	CTextures * textures = CTextures::GetInstance();
+	CSprites * sprites = CSprites::GetInstance();
+	textures->Add(ID_TEX_BBOX, L"textures\\black.png", D3DCOLOR_XRGB(255, 255, 255));
+	sprites->Add(ID_TEX_BBOX, 1, 1, 1, 1, textures->Get(ID_TEX_BBOX));
+	textures->Add(ID_TEX_TRANSPARENT, L"textures\\black.png", D3DCOLOR_XRGB(0, 0, 0));
+	sprites->Add(ID_TEX_TRANSPARENT, 0, 0, 31, 31, textures->Get(ID_TEX_TRANSPARENT));
 
 	simon = new Simon();
 	camera = new Camera(0, 0);
 	stateManager = new StateManager();
-	stateManager->LoadState(STATE_OUT_CASTLE,simon);
-
-	//textures->Add(ID_TEX_ZOMBIE, L"textures\\zombie.png", D3DCOLOR_XRGB(255, 0, 255));
-	//LPDIRECT3DTEXTURE9 texZombie = textures->Get(ID_TEX_ZOMBIE);
-	//sprites->Add(30001, 0, 0, 34, 64, texZombie);
-	//sprites->Add(30002, 35, 0, 68, 64, texZombie);
-
-
-
+	stateManager->LoadState(STATE_START_GAME,simon);
 }
 
 /*
@@ -167,7 +162,9 @@ void Render()
 		//// Clear back buffer with a color
 		d3ddv->ColorFill(bb, NULL, BACKGROUND_COLOR);
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
 		stateManager->Render(camera);
+
 		spriteHandler->End();
 		d3ddv->EndScene();
 	}

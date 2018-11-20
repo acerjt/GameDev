@@ -16,8 +16,7 @@ protected:
 	Camera *camera;
 	vector<LPGAMEOBJECT> listObject; 
 	vector<LPGAMEOBJECT> coObjects;
-	vector<LPGAMEOBJECT> listnoncoObjects;
-	vector<LPGAMEOBJECT> noncoObjects;
+	vector<LPGAMEOBJECT> listObject1;
 	vector<LPITEM> listItem;
 	float time;
 	D3DXVECTOR3 simonCheckpoint; 

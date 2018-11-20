@@ -140,10 +140,12 @@
     <ClInclude Include="Helicopter.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="LoadResources.h" />
+    <ClInclude Include="MapCollision.h" />
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="Scenes.h" />
     <ClInclude Include="Simon.h" />
     <ClInclude Include="Sprites.h" />
+    <ClInclude Include="StartKeyObject.h" />
     <ClInclude Include="StateIntro.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="StateOutCastle.h" />
@@ -151,6 +153,7 @@
     <ClInclude Include="Textures.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="Torch.h" />
+    <ClInclude Include="TransparentObject.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>
@@ -167,10 +170,12 @@
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LoadResources.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapCollision.cpp" />
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="Scenes.cpp" />
     <ClCompile Include="Simon.cpp" />
     <ClCompile Include="Sprites.cpp" />
+    <ClCompile Include="StartKeyObject.cpp" />
     <ClCompile Include="StateIntro.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="StateOutCastle.cpp" />
@@ -178,6 +183,7 @@
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Torch.cpp" />
+    <ClCompile Include="TransparentObject.cpp" />
     <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

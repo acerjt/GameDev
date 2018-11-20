@@ -5,7 +5,6 @@ void Torch::Render(Camera *camera)
 	if (this->isEnable==true)
 	{
 		animations[0]->Render(camera, x, y);
-		//RenderBoundingBox(camera);
 	}
 }
 void Torch::Render()
