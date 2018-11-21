@@ -23,6 +23,7 @@ void StateManager::LoadState(int stateID,Simon *simon)
 		this->stateID = stateID;
 		break;
 	case STATE_INTRO:
+		delete(gameState);
 		gameState = new StateIntro();
 		gameState->state = stateID;
 		this->stateID = stateID;
@@ -30,6 +31,12 @@ void StateManager::LoadState(int stateID,Simon *simon)
 	case STATE_OUT_CASTLE:
 		delete(gameState);
 		gameState = new StateOutCastle();
+		gameState->state = stateID;
+		this->stateID = stateID;
+		break;
+	case STATE_ONE:
+		delete(gameState);
+		gameState = new StateOne();
 		gameState->state = stateID;
 		this->stateID = stateID;
 		break;
@@ -54,10 +61,6 @@ void StateManager::Update(DWORD dt)
 	gameState->Update(dt);
 	if (gameState->GetChangingState())
 	{
-		if (stateID != STATE_START_GAME)
-		{
-			gameState->DestroyAll();
-		}
 		NextStateLevel();
 		LoadState(stateID,gameState->simon);
 		gameState->SetChangingState(false);

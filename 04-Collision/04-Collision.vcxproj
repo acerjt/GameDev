@@ -130,6 +130,7 @@
     <ClInclude Include="Batstartgame.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Castle.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="EnumManager.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="StartKeyObject.h" />
     <ClInclude Include="StateIntro.h" />
     <ClInclude Include="StateManager.h" />
+    <ClInclude Include="StateOne.h" />
     <ClInclude Include="StateOutCastle.h" />
     <ClInclude Include="StateStartGame.h" />
     <ClInclude Include="Textures.h" />
@@ -161,6 +163,7 @@
     <ClCompile Include="Batstartgame.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Castle.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -178,6 +181,7 @@
     <ClCompile Include="StartKeyObject.cpp" />
     <ClCompile Include="StateIntro.cpp" />
     <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="StateOne.cpp" />
     <ClCompile Include="StateOutCastle.cpp" />
     <ClCompile Include="StateStartGame.cpp" />
     <ClCompile Include="Textures.cpp" />

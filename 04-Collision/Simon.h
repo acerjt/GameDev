@@ -3,21 +3,22 @@
 #include "MorningStar.h"
 
 
-#define SIMON_WALKING_SPEED		0.11f 
-#define SIMON_JUMP_SPEED_Y		0.6f
-#define SIMON_JUMP_DEFLECT_SPEED 0.2f
-#define SIMON_GRAVITY			0.002f
-#define SIMON_DIE_DEFLECT_SPEED	 0.5f
+#define SIMON_WALKING_SPEED				0.11f
+#define SIMON_WALKING_CASTLE_SPEED		0.04f 
+#define SIMON_JUMP_SPEED_Y				0.6f
+#define SIMON_JUMP_DEFLECT_SPEED		0.2f
+#define SIMON_GRAVITY					0.002f
+#define SIMON_DIE_DEFLECT_SPEED			0.5f
 
-#define SIMON_STATE_IDLE_2			600
-#define SIMON_STATE_IDLE			500
-#define SIMON_STATE_WALKING_RIGHT	100
-#define SIMON_STATE_WALKING_LEFT	200
-#define SIMON_STATE_JUMP			300
-#define SIMON_STATE_DIE				400
-//#define SIMON_STATE_FIGHT_RIGHT		500
-#define SIMON_STATE_FIGHT			700
-#define SIMON_STATE_SIT				800	
+#define SIMON_STATE_IDLE_2				600
+#define SIMON_STATE_IDLE				500
+#define SIMON_STATE_WALKING_RIGHT		100
+#define SIMON_STATE_WALKING_LEFT		200
+#define SIMON_STATE_JUMP				300
+#define SIMON_STATE_DIE					400
+#define SIMON_STATE_WALKING_CASTLE		900
+#define SIMON_STATE_FIGHT				700
+#define SIMON_STATE_SIT					800	
 
 #define SIMON_ANI_IDLE_RIGHT			0
 #define SIMON_ANI_WALKING_RIGHT			1
@@ -36,11 +37,11 @@
 #define SIMON_ANI_DIE					11
 
 
-#define	SIMON_ALIVE		1
+#define	SIMON_ALIVE						1
 
 
-#define SIMON_UNTOUCHABLE_TIME 5000
-#define SIMON_ATTACK_TIME 400
+#define SIMON_UNTOUCHABLE_TIME			5000
+#define SIMON_ATTACK_TIME				400
 class Simon : public CGameObject
 {
 	MorningStar *morningstar;
@@ -55,8 +56,9 @@ class Simon : public CGameObject
 	//int anirender;
 	int noSubWeapon;
 public:
+	bool IsControlKey=true;
 	bool IsFighting;
-	bool IsJump = false;
+	bool IsJump;
 	bool IsMove;
 	bool IsSit;
 	//bool IsSitting = true;

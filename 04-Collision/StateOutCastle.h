@@ -6,16 +6,21 @@
 #include "Torch.h"
 #include "MapCollision.h"
 #include "TransparentObject.h"
+#include "Castle.h"
+#define STATE_OUTCASTLE_LIVE_TIME 2000
+
 class StateOutCastle : public GameState
 {
+	DWORD timeDelay;
 private:
 	TileMap *tilemap;
 	Torch *torch[6];
 	TransparentObject *transparentobject;
+	TransparentObject *transparentobject1;
 	CBrick *brick;
 	MapCollision *leftmap;
 	MapCollision *rightmap;
-
+	Castle *castle;
 
 	//UI *ui;
 	

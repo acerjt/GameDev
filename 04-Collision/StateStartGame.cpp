@@ -13,6 +13,7 @@ StateStartGame::StateStartGame()
 	startkeyobject = new StartKeyObject();
 	startkeyobject->SetPosition(143, 251);
 	simon = new Simon();
+	simon->IsControlKey == false;
 }
 
 
@@ -190,6 +191,14 @@ void StateStartGame::SetChangingState(bool status)
 	GameState::SetChangingState(status);
 }
 
-void StateStartGame::DestroyAll() {}
+void StateStartGame::DestroyAll() 
+{
+	delete(camera);
+	listObject.clear();
+	coObjects.clear();
+	delete(scene);
+	delete(batstartgame);
+	delete(startkeyobject);
+}
 
 

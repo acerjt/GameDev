@@ -373,6 +373,10 @@ void Simon::SetState(int state)
 		vx = 0;
 		IsSit = true;
 		break;
+	case SIMON_STATE_WALKING_CASTLE:
+		vx = SIMON_WALKING_CASTLE_SPEED;
+		IsControlKey = false;
+		break;
 	}
 }
 

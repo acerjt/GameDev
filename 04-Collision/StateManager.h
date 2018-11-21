@@ -2,6 +2,7 @@
 #include "StateStartGame.h"
 #include "StateIntro.h"
 #include "StateOutCastle.h"
+#include "StateOne.h"
 class StateManager
 {
 private:

@@ -24,13 +24,14 @@ void TransparentObject::GetBoundingBox(float & l, float & t, float & r, float & 
 {
 	l = x;
 	t = y;
-	r = l + TRANSPARENT_OBJECT_BBOX_WIDTH;
-	b = t + TRANSPARENT_OBJECT_BBOX_HEIGH;
+	r = l + width;
+	b = t + height;
 }
 
-TransparentObject::TransparentObject()
+TransparentObject::TransparentObject(int width,int height)
 {
-
+	this->width = width;
+	this->height = height;
 }
 
 

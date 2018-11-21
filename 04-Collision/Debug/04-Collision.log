@@ -1,8 +1,2 @@
-﻿  StateOutCastle.cpp
-d:\new folder (2)\game\gamedev\04-collision\stateoutcastle.cpp(44): warning C4018: '<': signed/unsigned mismatch
-d:\new folder (2)\game\gamedev\04-collision\stateoutcastle.cpp(52): warning C4018: '<': signed/unsigned mismatch
-d:\new folder (2)\game\gamedev\04-collision\stateoutcastle.cpp(58): warning C4018: '<': signed/unsigned mismatch
-d:\new folder (2)\game\gamedev\04-collision\stateoutcastle.cpp(68): warning C4018: '<': signed/unsigned mismatch
-d:\new folder (2)\game\gamedev\04-collision\stateoutcastle.cpp(81): warning C4018: '<': signed/unsigned mismatch
-d:\new folder (2)\game\gamedev\04-collision\stateoutcastle.cpp(120): warning C4018: '<': signed/unsigned mismatch
+﻿  main.cpp
   04-Collision.vcxproj -> D:\New folder (2)\Game\GameDev\Debug\04-Collision.exe

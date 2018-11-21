@@ -17,8 +17,9 @@
 #define ID_TEX_TORCH				7
 #define ID_TEX_MORNINGSTAR			8
 #define ID_TEX_TRANSPARENT			9
+#define ID_TEX_CASTLE				10
 
 #define STATE_START_GAME		   -2
 #define STATE_INTRO				   -1
 #define STATE_OUT_CASTLE			0
-#define STATE_1						1
+#define STATE_ONE					1

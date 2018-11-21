@@ -59,15 +59,21 @@ void CSampleKeyHander::OnKeyDown(int KeyCode)
 	{
 		
 	case DIK_SPACE:
-		if (simon->IsJump == false && stateManager->stateID != STATE_INTRO && stateManager->stateID != STATE_START_GAME)
+		if (simon->IsJump == false && simon->IsControlKey==true )
 		{
 			simon->SetState(SIMON_STATE_JUMP);
 		}
 		break;
 	case DIK_LCONTROL:
+		if(simon->IsControlKey&&stateManager->stateID!=STATE_INTRO)
 			simon->StartFighting();
 		break;
-	case DIK_RETURN:  // này là fnuts enter hả uwf
+	case DIK_Z:
+		GameState::changeState=true;
+		if (stateManager->stateID == STATE_START_GAME)
+		Scenes::changescene += 1;
+		break;
+	case DIK_RETURN:  
 		if (stateManager->stateID == STATE_START_GAME)
 			StateStartGame::isPress = true;
 		break;
@@ -90,19 +96,21 @@ void CSampleKeyHander::OnKeyUp(int KeyCode)
 
 void CSampleKeyHander::KeyState(BYTE *states)
 {
-	if (stateManager->stateID == STATE_INTRO) return;
 
 		if (simon->GetState() == SIMON_STATE_DIE) return;
-		if (game->IsKeyDown(DIK_RIGHT))
-			simon->SetState(SIMON_STATE_WALKING_RIGHT);
-		else if (game->IsKeyDown(DIK_LEFT))
-			simon->SetState(SIMON_STATE_WALKING_LEFT);
-	/*	else if (game->IsKeyDown(DIK_LCONTROL))
-			simon->StartFighting();*/
-		else if (game->IsKeyDown(DIK_DOWN))
-			simon->SetState(SIMON_STATE_SIT);
-		else
-			simon->SetState(SIMON_STATE_IDLE);
+		if (simon->IsControlKey == true)
+		{
+			if (game->IsKeyDown(DIK_RIGHT))
+				simon->SetState(SIMON_STATE_WALKING_RIGHT);
+			else if (game->IsKeyDown(DIK_LEFT))
+				simon->SetState(SIMON_STATE_WALKING_LEFT);
+			/*	else if (game->IsKeyDown(DIK_LCONTROL))
+					simon->StartFighting();*/
+			else if (game->IsKeyDown(DIK_DOWN))
+				simon->SetState(SIMON_STATE_SIT);
+			else
+				simon->SetState(SIMON_STATE_IDLE);
+		}
 }
 
 LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -131,7 +139,7 @@ void LoadResources()
 	textures->Add(ID_TEX_BBOX, L"textures\\black.png", D3DCOLOR_XRGB(255, 255, 255));
 	sprites->Add(ID_TEX_BBOX, 1, 1, 1, 1, textures->Get(ID_TEX_BBOX));
 	textures->Add(ID_TEX_TRANSPARENT, L"textures\\black.png", D3DCOLOR_XRGB(0, 0, 0));
-	sprites->Add(ID_TEX_TRANSPARENT, 0, 0, 31, 31, textures->Get(ID_TEX_TRANSPARENT));
+	sprites->Add(ID_TEX_TRANSPARENT, 0, 0, 19, 19, textures->Get(ID_TEX_TRANSPARENT));
 
 	simon = new Simon();
 	camera = new Camera(0, 0);

@@ -9,7 +9,7 @@
 class StateIntro:public GameState
 {
 private:
-	float timeDelay;
+	DWORD timeDelay;
 	Scenes *scene;
 	CBrick *brick;
 	BatIntro *batintro[2];

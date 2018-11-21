@@ -19,6 +19,7 @@ StateIntro::StateIntro()
 	brick->SetPosition(0, 400);
 	listObject.push_back(brick);
 	simon->SetPosition(SCREEN_WIDTH, 320);
+	simon->IsControlKey = false;
 	for (int i = 0; i < listObject.size(); i++)
 	{
 		coObjects.push_back(listObject[i]);
@@ -57,8 +58,6 @@ void StateIntro::Update(DWORD dt)
 		if (timeDelay >= STATE_INTRO_LIVE_TIME)
 		{
 			SetChangingState(true);
-			simon->SetState(SIMON_STATE_IDLE);
-			simon->nx = 1;
 		}
 	}
 }

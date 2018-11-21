@@ -6,7 +6,7 @@
 class StartKeyObject:public CGameObject
 {
 private: 
-	int TimeDisplay;
+	DWORD TimeDisplay;
 
 public:
 	void Update(DWORD dt);
