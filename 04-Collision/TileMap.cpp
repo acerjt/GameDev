@@ -65,7 +65,7 @@ void TileMap::LoadListTileFromFile(const char *file)
 				matrix[i][j] = id;
 			}
 			else
-			{
+			{	
 				posSpace[j] = lineString.find(" ", posSpace[j - 1] + 1);
 				subString = lineString.substr(posSpace[j - 1] + 1, posSpace[j] - (posSpace[j - 1] + 1));
 				int id = atoi(subString.c_str());
@@ -82,9 +82,30 @@ void TileMap::Render(Camera *camera)
 	D3DXVECTOR3 pos;
 
 	D3DXVECTOR3 cameraPosition = camera->GetCameraPosition();
-	for (int i = 0; i < rows; i++)
+	int rowStart;
+	int rowEnd;
+	int colStart;
+	int colEnd;
+	if ((cameraPosition.y / frameHeight) < 0)
+		rowStart = 0;
+	else
+		rowStart=(cameraPosition.y / frameHeight);
+	if ((cameraPosition.y / frameHeight + SCREEN_HEIGHT / frameHeight + 1) >rows)
+		rowEnd = rows;
+	else
+		rowEnd = (cameraPosition.y / frameHeight + SCREEN_HEIGHT / frameHeight + 1);
+	if ((cameraPosition.x / frameWidth)<0)
+		colStart = 0;
+	else
+		colStart = (cameraPosition.x / frameWidth);
+	if ((cameraPosition.x / frameWidth + SCREEN_WIDTH / frameWidth + 1) > cols)
+		colEnd = cols;
+	else
+		colEnd = (cameraPosition.x / frameWidth + SCREEN_WIDTH / frameWidth + 1);
+
+	for (int i = rowStart; i < rowEnd; i++)
 	{
-		for (int j = 0; j < cols; j++)
+		for (int j = colStart; j < colEnd; j++)
 		{
 			rect.left = (matrix[i][j] % spritePerRow) * frameWidth;
 			rect.top = (matrix[i][j] / spritePerRow) * frameHeight;
@@ -93,7 +114,7 @@ void TileMap::Render(Camera *camera)
 			pos.x = j * frameWidth;
 			pos.y = i * frameHeight;
 			pos.z = 0;
-			pos = camera->SetPositionInViewPort(pos);
+			pos = camera->SetPositionInCamera(pos);
 			sprite->Draw(pos, rect);
 		}
 	}

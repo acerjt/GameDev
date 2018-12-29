@@ -8,19 +8,10 @@
 #define SCENE_BBOX_HEIGHT 0
 class Scenes : public CGameObject
 {
-	
-public: 
-	float timeDelay=0;
-	static int changescene;
+	CSprite *sprite;
 public:
-	virtual void Update(DWORD dt);
-	virtual void Render(Camera *camera);
-	virtual void Render();
-	//void SetTimeLive(int timelive);
-	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
-	//virtual void Render(Camera *camera);
-	//void StartUntouchable() { press_start = GetTickCount(); }
-	//void SetState(int state);
+	void Render(Camera *camera);
+	void GetBoundingBox(float &l, float &t, float &r, float &b);
 	Scenes();
 	~Scenes();
 };

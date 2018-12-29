@@ -8,12 +8,9 @@
 class Helicopter: public CGameObject
 {
 public:
-	//virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
-	virtual void Update(DWORD dt);
-	virtual void Render(Camera *camera);
-	virtual void Render();
-	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
-
+	void Update(DWORD dt);
+	void Render(Camera *camera);
+	void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	Helicopter();
 	~Helicopter();
 };

@@ -1,2 +1,44 @@
-﻿  main.cpp
-  04-Collision.vcxproj -> D:\New folder (2)\Game\GameDev\Debug\04-Collision.exe
+﻿  Brick.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Scenes.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  StateIntro.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateintro.cpp(25): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateintro.cpp(43): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateintro.cpp(74): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateintro.cpp(99): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
+d:\new folder (2)\24122018\gamedev\04-collision\stateintro.cpp(99): warning C4154: deletion of an array expression; conversion to pointer supplied
+  StateManager.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  StateOne.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(25): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(96): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(128): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(132): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(136): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(141): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(159): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(161): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(194): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(209): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(215): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateone.cpp(236): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  StateOutCastle.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(31): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(46): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(53): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(65): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(79): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(94): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(146): warning C4018: '<': signed/unsigned mismatch
+d:\new folder (2)\24122018\gamedev\04-collision\stateoutcastle.cpp(148): warning C4018: '<': signed/unsigned mismatch
+  StateStartGame.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  main.cpp
+d:\new folder (2)\24122018\gamedev\04-collision\collidereffect.h(15): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  04-Collision.vcxproj -> D:\New folder (2)\24122018\GameDev\Debug\04-Collision.exe

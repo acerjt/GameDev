@@ -1,12 +1,10 @@
 #include "StateIntro.h"
-
-
-
+#include "StateManager.h"
 StateIntro::StateIntro()
 {
 	camera = new Camera(0, 0);
 	scene = new Scenes();
-	scene->SetPosition(0, 0);
+	scene->SetPosition(0, 87);
 	helicopter = new Helicopter();
 	helicopter->SetPosition(520.0f, 130);
 	batintro[0] = new BatIntro();
@@ -15,11 +13,15 @@ StateIntro::StateIntro()
 	batintro[1] = new BatIntro();
 	batintro[1]->SetPosition(350.0f, 130);
 	batintro[1]->SetState(BAT_INTRO_STATE_FLY_STRAIGHT);
-	brick = new CBrick(SCREEN_WIDTH+BRICK_BBOX_WIDTH,BRICK_BBOX_HEIGHT,STATE_INTRO);
-	brick->SetPosition(0, 400);
+	brick = new CBrick();
+	brick->SetWidth(SCREEN_WIDTH + BRICK_BBOX_WIDTH);
+	brick->SetType(5);
+	brick->SetHeight(30);
+	brick->SetPosition(0, 420);
+	scoreboard = new ScoreBoard(simon, 16, StateManager::d3ddv, StateManager::spriteHandler);
 	listObject.push_back(brick);
+	simon->SetControlKey(false);
 	simon->SetPosition(SCREEN_WIDTH, 320);
-	simon->IsControlKey = false;
 	for (int i = 0; i < listObject.size(); i++)
 	{
 		coObjects.push_back(listObject[i]);
@@ -34,12 +36,10 @@ StateIntro::~StateIntro()
 
 void StateIntro::Update(DWORD dt)
 {
-	
+	scoreboard->Update(16, 1000, 3, 1);
 	helicopter->Update(dt);
 	batintro[0]->Update(dt);
 	batintro[1]->Update(dt);
-	
-
 	for (int i = 0; i < listObject.size(); i++)
 	{
 		listObject[i]->Update(dt, &coObjects);
@@ -64,12 +64,13 @@ void StateIntro::Update(DWORD dt)
 
 void StateIntro::Render(Camera *camera)
 {
-	//camera = this->camera;
+	camera = this->camera;
 	scene->Render(camera);
 	helicopter->Render(camera);
 	batintro[0]->Render(camera);
 	batintro[1]->Render(camera);
 	simon->Render(camera);
+	scoreboard->Render(camera);
 	for (int i = 0; i < listObject.size(); i++)
 	{
 		listObject[i]->Render(camera);
@@ -92,9 +93,10 @@ void StateIntro::DestroyAll()
 	coObjects.clear();
 	delete(helicopter);
 	delete(scene);
-	//for(int i = 0; i < 2;i++)
-	//	delete(batintro[i]);
-	//delete(batintro);
+	delete(scoreboard);
+	for(int i = 0; i < 2;i++)
+		delete(batintro[i]);
+	delete(batintro);
 	delete(brick);
 
 }

@@ -31,21 +31,15 @@ class MorningStar :public CGameObject
 private:
 	int anirender;
 	CAnimation * ani;
-	int type;
+	int damage;
 public:
-	//virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
-	virtual void Render(Camera *camera);
-	virtual void Render(Camera *camera,int ani);
-	virtual void Render();
-
-	virtual void SetPosition(float x, float y,bool Issit);
-	virtual void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
+	void Render(Camera *camera);
+	void Render(Camera *camera,int ani);
+	void SetPosition(float x, float y,bool Issit);
+	void Update(DWORD dt, vector<LPGAMEOBJECT> *colliable_objects = NULL);
+	void ResetAnimation();
 	int GetCurrentFrameOfMorningStar();
-
-	//void SetType(int type);
-	//void Initialize();//LPDIRECT3DDEVICE9 gDevice, const char* file, float x, float y, int tag);
-	virtual void GetBoundingBox(float &left, float &top, float &right, float &bottom);
-	//virtual void Render(Camera *camera);
+	void GetBoundingBox(float &left, float &top, float &right, float &bottom);
 	MorningStar();
 	~MorningStar();
 };

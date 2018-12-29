@@ -5,19 +5,12 @@
 class Camera
 {
 private:
-	D3DXVECTOR3 cameraPosition;     //Toa do cua camera trong world
-	RECT *region;
+	D3DXVECTOR3 cameraPosition;
 public:
 	Camera(float x, float y);
 	~Camera();
-
-	//Chuyen tu toa do trong the gioi thuc sang toa do trong viewport
-	D3DXVECTOR3 SetPositionInViewPort(D3DXVECTOR3 position);
-
-	//Set toa do cua camera trong world(di chuyen camera)
+	D3DXVECTOR3 SetPositionInCamera(D3DXVECTOR3 position);
 	void SetCameraPosition(float x, float y);
-
-	//Lay toa do cua camera trong the gioi thuc
 	D3DXVECTOR3 GetCameraPosition();
 };
 

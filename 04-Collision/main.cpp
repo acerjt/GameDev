@@ -27,6 +27,9 @@
 #include "Simon.h"
 #include "Camera.h"
 #include "StateManager.h"
+#include <string>
+#include <iostream>
+#include <fstream>
 #define WINDOW_CLASS_NAME L"SampleWindow"
 #define MAIN_WINDOW_TITLE L"04 - Collision"
 
@@ -58,24 +61,56 @@ void CSampleKeyHander::OnKeyDown(int KeyCode)
 	switch (KeyCode)
 	{
 		
-	case DIK_SPACE:
-		if (simon->IsJump == false && simon->IsControlKey==true )
+	case DIK_S:
+		if (simon->IsJump == false && simon->isControlKey())
 		{
 			simon->SetState(SIMON_STATE_JUMP);
 		}
 		break;
-	case DIK_LCONTROL:
-		if(simon->IsControlKey&&stateManager->stateID!=STATE_INTRO)
-			simon->StartFighting();
-		break;
 	case DIK_Z:
 		GameState::changeState=true;
-		if (stateManager->stateID == STATE_START_GAME)
-		Scenes::changescene += 1;
 		break;
 	case DIK_RETURN:  
 		if (stateManager->stateID == STATE_START_GAME)
 			StateStartGame::isPress = true;
+		break;
+	case DIK_X:
+		if(simon->isControlKey())
+			simon->StartThrowing();
+			break;
+	case DIK_0:
+		simon->SetPosition(300, 0);
+		break;
+	case DIK_1:
+		simon->SetPosition(2800,0);
+		break;
+	case DIK_2:
+		simon->SetPosition(3300, 258);
+		break;
+	case DIK_3:
+		simon->SetPosition(3700, 0);
+		break;
+	case DIK_4:
+		simon->SetPosition(5000, 0);
+		break;
+	case DIK_Q:
+		simon->SetTypeOfWeapon(ITEM_AXE);
+		break;
+	case DIK_W:
+		simon->SetTypeOfWeapon(ITEM_BOOMERANG);
+		break;
+	case DIK_E:
+		simon->SetTypeOfWeapon(ITEM_DAGGER);
+		break;
+	case DIK_R:
+		simon->SetTypeOfWeapon(ITEM_HOLY_WATER);
+		break;
+	case DIK_T:
+		simon->SetTypeOfWeapon(ITEM_STOP_WATCH);
+		break;
+	case DIK_D:
+		if(simon->GetNumberOfWeapon()<3)
+		simon->IncreaseWeapon();
 		break;
 	}
 }
@@ -83,14 +118,6 @@ void CSampleKeyHander::OnKeyDown(int KeyCode)
 void CSampleKeyHander::OnKeyUp(int KeyCode)
 {
 	DebugOut(L"[INFO] KeyUp: %d\n", KeyCode);
-	//switch (KeyCode)
-	//{
-
-	//case DIK_SPACE:
-	//	if (simon->IsJump == false)
-	//		simon->SetState(SIMON_STATE_IDLE);
-	//	break;
-	//}
 }
 	
 
@@ -98,18 +125,23 @@ void CSampleKeyHander::KeyState(BYTE *states)
 {
 
 		if (simon->GetState() == SIMON_STATE_DIE) return;
-		if (simon->IsControlKey == true)
-		{
-			if (game->IsKeyDown(DIK_RIGHT))
+		if (simon->isControlKey())
+		{	
+		if (game->IsKeyDown(DIK_A))
+			simon->StartFighting();
+	
+		 if (game->IsKeyDown(DIK_RIGHT) &&simon->IsHurt==false)
 				simon->SetState(SIMON_STATE_WALKING_RIGHT);
-			else if (game->IsKeyDown(DIK_LEFT))
+			else if (game->IsKeyDown(DIK_LEFT) && simon->IsHurt == false)
 				simon->SetState(SIMON_STATE_WALKING_LEFT);
-			/*	else if (game->IsKeyDown(DIK_LCONTROL))
-					simon->StartFighting();*/
 			else if (game->IsKeyDown(DIK_DOWN))
 				simon->SetState(SIMON_STATE_SIT);
-			else
+			else if(!simon->IsHurt)
 				simon->SetState(SIMON_STATE_IDLE);
+		 if ((game->IsKeyDown(DIK_UP)))
+			 simon->OnStairHandle(1);
+		 if ((game->IsKeyDown(DIK_DOWN)))
+			 simon->OnStairHandle(2);
 		}
 }
 
@@ -132,21 +164,98 @@ LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	TO-DO: Improve this function by loading texture,sprite,animation,object from file
 */
-void LoadResources()
+void LoadResources(LPDIRECT3DDEVICE9 d3ddv, LPD3DXSPRITE sprite)
 {
-	CTextures * textures = CTextures::GetInstance();
-	CSprites * sprites = CSprites::GetInstance();
-	textures->Add(ID_TEX_BBOX, L"textures\\black.png", D3DCOLOR_XRGB(255, 255, 255));
-	sprites->Add(ID_TEX_BBOX, 1, 1, 1, 1, textures->Get(ID_TEX_BBOX));
-	textures->Add(ID_TEX_TRANSPARENT, L"textures\\black.png", D3DCOLOR_XRGB(0, 0, 0));
-	sprites->Add(ID_TEX_TRANSPARENT, 0, 0, 19, 19, textures->Get(ID_TEX_TRANSPARENT));
-
 	simon = new Simon();
 	camera = new Camera(0, 0);
-	stateManager = new StateManager();
+	stateManager = new StateManager(d3ddv,sprite);
 	stateManager->LoadState(STATE_START_GAME,simon);
 }
-
+void LoadTextures(wstring file)
+{
+	wifstream input;
+	input.open(file, wifstream::in);
+	wstring checkEnd;
+	int id;
+	wstring filepath;
+	int Color_R;
+	int Color_G;
+	int Color_B;
+	while (input >> checkEnd)
+	{
+		if (checkEnd == L"END")
+		{
+			return;
+		}
+		else 
+		{
+			id = stoi(checkEnd.c_str());
+			input >> filepath >> Color_R >> Color_G >> Color_B;
+			CTextures * textures = CTextures::GetInstance();
+			LPCWSTR a = (LPCWSTR)filepath.c_str();
+			textures->Add(id, a, D3DCOLOR_XRGB(Color_R, Color_G, Color_B));		
+		}
+	}
+}
+void LoadSprites(wstring file)
+{
+	wifstream input;
+	input.open(file, wifstream::in);
+	wstring checkEnd;
+	int id;
+	int left;
+	int top;
+	int right;
+	int bottom;
+	int idtexture;
+	while (input >> checkEnd)
+	{
+		if (checkEnd == L"END")
+		{
+			return;
+		}
+		else
+		{
+			id = stoi(checkEnd.c_str());
+			input >> left >> top >> right >> bottom >> idtexture;
+			CTextures * textures = CTextures::GetInstance();
+			CSprites * sprites = CSprites::GetInstance();
+			sprites->Add(id, left, top, right, bottom, textures->Get(idtexture));
+		}
+	}
+}
+void LoadAnimations(wstring file)
+{
+	wifstream input;
+	input.open(file, wifstream::in);
+	wstring checkEnd;
+	int id;
+	int frames;
+	int time;
+	while (input >> checkEnd)
+	{
+		if (checkEnd == L"END")
+		{
+			return;
+		}
+		else
+		{
+			id = stoi(checkEnd.c_str());
+			input >> time >>frames;
+			CAnimations * animations = CAnimations::GetInstance();
+			LPANIMATION ani;
+			ani = new CAnimation(time);
+			int *x;
+			x = new int[frames];
+			for (int i = 0; i < frames; i++)
+			{
+				input >> x[i];
+				ani->Add(x[i]);
+			}
+			animations->Add(id, ani);
+		}
+	}
+}
 /*
 	Update world status for this frame
 	dt: time period between beginning of last frame and beginning of this frame
@@ -168,7 +277,7 @@ void Render()
 	if (d3ddv->BeginScene())
 	{
 		//// Clear back buffer with a color
-		d3ddv->ColorFill(bb, NULL, BACKGROUND_COLOR);
+		d3ddv->ColorFill(bb, NULL, game->color);
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
 		stateManager->Render(camera);
@@ -276,10 +385,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	keyHandler = new CSampleKeyHander();
 	game->InitKeyboard(keyHandler);
-
-
-	LoadResources();
-
+	LoadTextures(L"loadresourcesfromfile\\texture_load.txt");
+	LoadSprites(L"loadresourcesfromfile\\sprite_load.txt");
+	LoadAnimations(L"loadresourcesfromfile\\animation_load.txt");
+	LoadResources(game->d3ddv,game->spriteHandler);
 	SetWindowPos(hWnd, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SWP_NOMOVE | SWP_NOOWNERZORDER | SWP_NOZORDER);
 
 	Run();

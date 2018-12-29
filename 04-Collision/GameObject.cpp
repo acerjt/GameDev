@@ -19,6 +19,8 @@ CGameObject::CGameObject()
 	nx = 1;	
 	isEnable = true;
 	isDead = false;
+	collider = new ColliderEffect();
+	deadeffect = new DeadEffect();
 }
 
 void CGameObject::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
@@ -26,6 +28,20 @@ void CGameObject::Update(DWORD dt, vector<LPGAMEOBJECT> *coObjects)
 	this->dt = dt;
 	dx = vx*dt;
 	dy = vy*dt;
+	
+	if (isEnable)
+	{
+		collider->SetPosition(x, y + 10);
+		deadeffect->SetPosition(x+5,y-5);
+	}
+	collider->Update(dt);
+	deadeffect->Update(dt);
+}
+
+void CGameObject::Render(Camera * camera)
+{
+	collider->Render(camera);
+	deadeffect->Render(camera);
 }
 
 /*
@@ -144,6 +160,23 @@ void CGameObject::RenderBoundingBox(Camera *camera)
 	rect.bottom = (int)b - (int)t;
 
 	CGame::GetInstance()->Draw(camera,x, y, bbox, rect.left, rect.top, rect.right, rect.bottom, 255);
+}
+void CGameObject::RenderBoundingBox()
+{
+	D3DXVECTOR3 p(x, y, 0);
+	RECT rect;
+
+	LPDIRECT3DTEXTURE9 bbox = CTextures::GetInstance()->Get(ID_TEX_BBOX);
+
+	float l, t, r, b;
+
+	GetBoundingBox(l, t, r, b);
+	rect.left = 0;
+	rect.top = 0;
+	rect.right = (int)r - (int)l;
+	rect.bottom = (int)b - (int)t;
+
+	CGame::GetInstance()->Draw(x, y, bbox, rect.left, rect.top, rect.right, rect.bottom, 255);
 }
 
 void CGameObject::AddAnimation(int aniId)

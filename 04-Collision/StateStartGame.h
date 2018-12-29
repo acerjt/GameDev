@@ -22,7 +22,6 @@ public:
 	void DestroyAll();
 	bool GetChangingState();
 	void SetChangingState(bool status);
-	bool CameraFollowHandle(DWORD dt) { return true; }
 };
 
 

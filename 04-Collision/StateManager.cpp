@@ -1,13 +1,15 @@
 #include "StateManager.h"
 
 
-
-StateManager::StateManager()
+LPDIRECT3DDEVICE9 StateManager::d3ddv = NULL;
+LPD3DXSPRITE StateManager::spriteHandler = NULL;
+int StateManager::stateID;
+StateManager::StateManager(LPDIRECT3DDEVICE9 d3ddv, LPD3DXSPRITE spriteHandler)
 {
-	
+	this->d3ddv = d3ddv;
+	this->spriteHandler = spriteHandler;
 	stateID = STATE_START_GAME;
 }
-
 
 StateManager::~StateManager()
 {
@@ -40,7 +42,6 @@ void StateManager::LoadState(int stateID,Simon *simon)
 		gameState->state = stateID;
 		this->stateID = stateID;
 		break;
-	
 	default:
 		break;
 	}

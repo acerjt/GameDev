@@ -13,17 +13,12 @@ Camera::~Camera()
 {
 }
 
-D3DXVECTOR3 Camera::SetPositionInViewPort(D3DXVECTOR3 position)
+D3DXVECTOR3 Camera::SetPositionInCamera(D3DXVECTOR3 position)
 {
-
-	D3DXVECTOR3 vp_pos;
-
-	//test
-	vp_pos.x = position.x - this->cameraPosition.x;
-	vp_pos.y = position.y -this->cameraPosition.y;
-	//--
-
-	return D3DXVECTOR3(vp_pos.x, vp_pos.y, 0);
+	D3DXVECTOR3 pos;
+	pos.x = position.x - this->cameraPosition.x;
+	pos.y = position.y -this->cameraPosition.y;
+	return D3DXVECTOR3(pos.x, pos.y, 0);
 }
 
 void Camera::SetCameraPosition(float x, float y)

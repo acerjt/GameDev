@@ -2,9 +2,9 @@
 #include "debug.h"
 
 CGame * CGame::__instance = NULL;
-
+D3DCOLOR CGame::color = D3DCOLOR_XRGB(0, 0, 0);
 /*
-	Initialize DirectX, create a Direct3D device for rendering within the window, initial Sprite library for 
+	Initialize DirectX, create a Direct3D device for renderying within the window, initial Sprite library for 
 	rendering 2D images
 	- hInst: Application instance handle
 	- hWnd: Application window handle
@@ -62,7 +62,12 @@ void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, int left, int top
 	r.left = left;
 	r.top = top;
 	r.right = right;
-	r.bottom = bottom;
+	r.bottom = bottom; 
+	spriteHandler->Draw(texture, &r, NULL, &p, D3DCOLOR_ARGB(alpha, 255, 255, 255));
+}
+void CGame::Draw(float x, float y, LPDIRECT3DTEXTURE9 texture, RECT & r, int alpha)
+{
+	D3DXVECTOR3 p(x, y, 0);
 	spriteHandler->Draw(texture, &r, NULL, &p, D3DCOLOR_ARGB(alpha, 255, 255, 255));
 }
 void CGame::Draw(Camera *camera,float x,float y, LPDIRECT3DTEXTURE9 texture, int left, int top, int right, int bottom, int alpha)
@@ -73,8 +78,7 @@ void CGame::Draw(Camera *camera,float x,float y, LPDIRECT3DTEXTURE9 texture, int
 	r.top = top;
 	r.right = right;
 	r.bottom = bottom;
-	//spriteHandler->Draw(texture, &r, NULL, &p, D3DCOLOR_ARGB(alpha, 255, 255, 255));
-	spriteHandler->Draw(texture, &r, NULL, &camera->SetPositionInViewPort(p), D3DCOLOR_ARGB(alpha, 255, 255, 255));
+	spriteHandler->Draw(texture, &r, NULL, &camera->SetPositionInCamera(p), D3DCOLOR_ARGB(alpha, 255, 255, 255));
 }
 
 void CGame::Draw(LPDIRECT3DTEXTURE9 texture, D3DXVECTOR3 &pos, RECT &r, int alpha )
@@ -85,18 +89,14 @@ void CGame::Draw(LPDIRECT3DTEXTURE9 texture, D3DXVECTOR3 &pos, RECT &r, int alph
 	//r.top = top;
 	//r.right = right;
 	//r.bottom = bottom;
-	spriteHandler->Draw(texture, &r, NULL, &pos, D3DCOLOR_ARGB(alpha, 255, 255, 255));
+	//color = D3DCOLOR_ARGB(alpha, 255, 255, 255);
+
+	spriteHandler->Draw(texture, &r, NULL, &pos, D3DCOLOR_ARGB(alpha, 255, 255, 255));// D3DCOLOR_ARGB(alpha, 255, 255, 255));
 }
 
 void CGame::Draw(Camera* camera,LPDIRECT3DTEXTURE9 texture, D3DXVECTOR3 &pos, int alpha)
 {
-	//D3DXVECTOR3 p(x, y, 0);
-	//RECT r;
-	//r.left = left;
-	//r.top = top;
-	//r.right = right;
-	//r.bottom = bottom;
-	spriteHandler->Draw(texture, NULL, NULL, &camera->SetPositionInViewPort(pos), D3DCOLOR_ARGB(alpha, 255, 255, 255));
+	spriteHandler->Draw(texture, NULL, NULL, &camera->SetPositionInCamera(pos), D3DCOLOR_ARGB(alpha, 255, 255, 255));// D3DCOLOR_ARGB(alpha, 255, 255, 255));
 }
 
 

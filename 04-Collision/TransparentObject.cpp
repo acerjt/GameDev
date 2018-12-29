@@ -1,11 +1,6 @@
 #include "TransparentObject.h"
 
 
-
-void TransparentObject::Update(DWORD dt)
-{
-}
-
 void TransparentObject::Render(Camera * camera)
 {
 	CSprites * sprites = CSprites::GetInstance();
@@ -14,11 +9,9 @@ void TransparentObject::Render(Camera * camera)
 	{
 		sprite->Draw(camera, x, y);
 	}
+	RenderBoundingBox(camera);
 }
 
-void TransparentObject::Render()
-{
-}
 
 void TransparentObject::GetBoundingBox(float & l, float & t, float & r, float & b)
 {
@@ -33,8 +26,6 @@ TransparentObject::TransparentObject(int width,int height)
 	this->width = width;
 	this->height = height;
 }
-
-
 TransparentObject::~TransparentObject()
 {
 

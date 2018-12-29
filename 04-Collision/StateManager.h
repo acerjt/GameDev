@@ -7,10 +7,13 @@ class StateManager
 {
 private:
 	GameState* gameState;
+	
 public:
-	int stateID;
+	static int stateID;
+	static LPDIRECT3DDEVICE9 d3ddv;
+	static LPD3DXSPRITE spriteHandler;
 public:
-	StateManager();
+	StateManager(LPDIRECT3DDEVICE9 d3ddv, LPD3DXSPRITE spriteHandler);
 	~StateManager();
 	void LoadState(int stateID,Simon *simon);
 	void NextStateLevel();

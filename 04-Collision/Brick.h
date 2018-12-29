@@ -5,13 +5,8 @@
 class CBrick : public CGameObject
 {
 	CSprite *sprite;
-	int chose;
-protected:
-	int width;
-	int height;
 public:
-	virtual void Render(Camera *camera);
-	virtual void Render();
-	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
-	CBrick(int width,int height,int chose);
+	void Render(Camera *camera);
+	void GetBoundingBox(float &l, float &t, float &r, float &b);
+	CBrick();
 };

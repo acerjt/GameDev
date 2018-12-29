@@ -28,6 +28,7 @@ void CSprite::Draw(float x, float y, int alpha)
 	game->Draw(x, y, texture, left, top, right, bottom, alpha);
 }
 
+
 void CSprite::Draw(Camera *camera,float x ,float y, int alpha)
 {
 	CGame * game = CGame::GetInstance();
@@ -39,6 +40,8 @@ void CSprite::Draw(D3DXVECTOR3 &pos, RECT &rect, int alpha)
 	CGame * game = CGame::GetInstance();
 	game->Draw(texture, pos, rect, alpha);
 }
+
+
 
 void CSprite::Draw(Camera* camera, D3DXVECTOR3 &pos, int alpha)
 {
@@ -116,16 +119,6 @@ void CAnimation::Render(Camera *camera,float x, float y, int alpha)
 
 	frames[currentFrame]->GetSprite()->Draw(camera,x, y, alpha);
 }
-
-//LPANIMATION_FRAME CAnimation::Get(int id)
-//{
-//	return frames[id];
-//}
-
-
-
-
-
 
 
 CAnimations * CAnimations::__instance = NULL;

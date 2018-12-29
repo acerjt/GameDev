@@ -9,11 +9,10 @@
 class BatIntro: public CGameObject
 {
 public:
-	virtual void Update(DWORD dt);
-	virtual void Render(Camera *camera);
-	virtual void Render();
-	virtual void GetBoundingBox(float &l, float &t, float &r, float &b);
-	virtual void SetState(int state);
+	void Update(DWORD dt);
+	void Render(Camera *camera);
+	void GetBoundingBox(float &l, float &t, float &r, float &b);
+	void SetState(int state);
 	BatIntro();
 	~BatIntro();
 };
